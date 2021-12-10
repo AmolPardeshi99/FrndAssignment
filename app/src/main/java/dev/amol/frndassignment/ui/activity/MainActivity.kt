@@ -1,4 +1,4 @@
-package dev.amol.frndassignment.ui
+package dev.amol.frndassignment.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
