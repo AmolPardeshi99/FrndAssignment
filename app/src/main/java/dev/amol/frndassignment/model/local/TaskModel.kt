@@ -8,8 +8,8 @@ import java.io.Serializable
 @Entity(tableName = "taskList")
 data class TaskModel(
     @PrimaryKey
-    @ColumnInfo(name = "task_id")val task_id:Int,
-    @ColumnInfo(name = "title")var title:String,
-    @ColumnInfo(name = "desc")var desc:String,
-    @ColumnInfo(name = "date")var date:String
-):Serializable
+    @ColumnInfo(name = "task_id") val task_id: Int,
+    @ColumnInfo(name = "title") var title: String,
+    @ColumnInfo(name = "desc") var desc: String,
+    @ColumnInfo(name = "date") var date: String
+) : Serializable

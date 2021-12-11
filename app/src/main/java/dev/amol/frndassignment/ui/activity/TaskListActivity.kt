@@ -19,9 +19,9 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class TaskListActivity : AppCompatActivity(),OnTaskClickListener {
+class TaskListActivity : AppCompatActivity(), OnTaskClickListener {
 
-    val taskViewModel:TaskViewModel by viewModels()
+    val taskViewModel: TaskViewModel by viewModels()
     private lateinit var taskAdapter: TaskAdapter
     private var taskList = ArrayList<TaskModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,10 +45,10 @@ class TaskListActivity : AppCompatActivity(),OnTaskClickListener {
 
 
     private fun setRecycler() {
-        taskAdapter = TaskAdapter(this,taskList)
+        taskAdapter = TaskAdapter(this, taskList)
         taskRecyclerView.apply {
             adapter = taskAdapter
-            layoutManager=LinearLayoutManager(this@TaskListActivity)
+            layoutManager = LinearLayoutManager(this@TaskListActivity)
         }
     }
 

@@ -9,26 +9,26 @@ import dev.amol.frndassignment.repo.TaskRepository
 import javax.inject.Inject
 
 @HiltViewModel
-class TaskViewModel @Inject constructor(val taskRepo: TaskRepository):ViewModel() {
+class TaskViewModel @Inject constructor(val taskRepo: TaskRepository) : ViewModel() {
 
 
-    fun getDataFromRoomDB():LiveData<List<TaskModel>>{
+    fun getDataFromRoomDB(): LiveData<List<TaskModel>> {
         return taskRepo.getDataFromRoom()
     }
 
-    fun fetchDataFromAPI(){
+    fun fetchDataFromAPI() {
         taskRepo.fetchDataFromAPI()
     }
 
-    fun addDataToAPI(taskReqData: AddTaskReqData){
+    fun addDataToAPI(taskReqData: AddTaskReqData) {
         taskRepo.addDataToAPI(taskReqData)
     }
 
-    fun deleteFromAPI(task_id:Int){
-        taskRepo.deleteDataFromAPI(task_id )
+    fun deleteFromAPI(task_id: Int) {
+        taskRepo.deleteDataFromAPI(task_id)
     }
 
-    fun deleteFromRoomDB(taskModel: TaskModel){
+    fun deleteFromRoomDB(taskModel: TaskModel) {
         taskRepo.deleteTaskFromRoom(taskModel)
     }
 

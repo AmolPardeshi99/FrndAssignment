@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
 
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
-            currDate = "$dayOfMonth/$month/$year"
+            currDate = "$dayOfMonth/${month + 1}/$year"
         }
 
         btnAddTask.setOnClickListener {
@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnShowTaskList.setOnClickListener {
-            startActivity(Intent(this,TaskListActivity::class.java))
+            startActivity(Intent(this, TaskListActivity::class.java))
         }
 
     }

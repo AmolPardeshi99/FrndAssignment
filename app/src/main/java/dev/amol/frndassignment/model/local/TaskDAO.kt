@@ -16,7 +16,7 @@ interface TaskDAO {
 
     // fetch all data
     @Query("select * from taskList order by date")
-    fun getALlTaskList():LiveData<List<TaskModel>>
+    fun getALlTaskList(): LiveData<List<TaskModel>>
 
 
     // delete all task before adding fresh task

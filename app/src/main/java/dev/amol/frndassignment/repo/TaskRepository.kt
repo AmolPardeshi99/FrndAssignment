@@ -15,46 +15,50 @@ import kotlinx.coroutines.Dispatchers.Main
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class TaskRepository @Inject constructor(val apiService: APIService ,val taskDAO: TaskDAO) {
+class TaskRepository @Inject constructor(val apiService: APIService, val taskDAO: TaskDAO) {
 
-    fun fetchDataFromAPI(){
+    fun fetchDataFromAPI() {
         CoroutineScope(IO).launch {
 
 
-            val taskList:List<Task> = apiService.getAllTask(GetTaskReqData(USER_ID)).tasks
-            val taskModelList= ArrayList<TaskModel>()
+            val taskList: List<Task> = apiService.getAllTask(GetTaskReqData(USER_ID)).tasks
+            val taskModelList = ArrayList<TaskModel>()
 
 
-            taskList.forEach{
-                taskModelList.add(TaskModel(it.taskId,
-                    it.taskDetail.title,it.taskDetail.desc,it.taskDetail.date))
+            taskList.forEach {
+                taskModelList.add(
+                    TaskModel(
+                        it.taskId,
+                        it.taskDetail.title, it.taskDetail.desc, it.taskDetail.date
+                    )
+                )
             }
             taskDAO.deleteALlTask()
             taskDAO.addTaskList(taskModelList)
         }
     }
 
-    fun addDataToAPI(addTaskReqData: AddTaskReqData){
+    fun addDataToAPI(addTaskReqData: AddTaskReqData) {
         CoroutineScope(IO).launch {
             apiService.storeCalendarTask(addTaskReqData)
             fetchDataFromAPI()
         }
     }
 
-    fun deleteDataFromAPI(task_id:Int){
+    fun deleteDataFromAPI(task_id: Int) {
         CoroutineScope(IO).launch {
-            apiService.deleteTask(DeleteTaskReq(task_id, USER_ID))
+            apiService.deleteTask(DeleteTaskReq(taskId = task_id, userId = USER_ID))
             fetchDataFromAPI()
         }
     }
 
 
-    fun getDataFromRoom():LiveData<List<TaskModel>>{
+    fun getDataFromRoom(): LiveData<List<TaskModel>> {
         return taskDAO.getALlTaskList()
     }
 
 
-    fun deleteTaskFromRoom(taskModel: TaskModel){
+    fun deleteTaskFromRoom(taskModel: TaskModel) {
         taskDAO.deleteTask(taskModel)
     }
 }
