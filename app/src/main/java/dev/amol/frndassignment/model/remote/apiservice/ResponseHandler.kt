@@ -1,4 +1,4 @@
-package dev.amol.frndassignment.data.remote
+package dev.amol.frndassignment.model.remote.apiservice
 
 import retrofit2.HttpException
 import java.net.SocketTimeoutException
@@ -68,7 +68,7 @@ open class ResponseHandler {
             404 -> "Not found"
             409 -> "Conflicts found"
             500 -> "Server Error"
-            else -> "Something went wrong"
+            else -> "Something went wrong :-- $code"
         }
     }
 }

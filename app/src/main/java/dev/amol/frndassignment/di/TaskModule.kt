@@ -7,9 +7,10 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import dev.amol.frndassignment.data.local.TaskDAO
-import dev.amol.frndassignment.data.local.TaskRoomDataBase
-import dev.amol.frndassignment.data.remote.APIService
+import dev.amol.frndassignment.model.local.TaskDAO
+import dev.amol.frndassignment.model.local.TaskRoomDataBase
+import dev.amol.frndassignment.model.remote.apiservice.APIService
+import dev.amol.frndassignment.utils.Utility.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
@@ -23,7 +24,7 @@ object TaskModule {
     @Provides
     fun provideAPIService(): APIService {
         val builder  = Retrofit.Builder()
-            .baseUrl("http://13.232.169.202:8080/" )
+            .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
         return builder.create(APIService::class.java)

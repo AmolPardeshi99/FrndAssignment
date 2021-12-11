@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FrndAssignment</string>
+    <string name="sampleDesc">Grocery LIst: Sugar - 1 Kg , Tea Powder , Milk Powder, Peanuts, Urad Dal, Basamati Rice</string>
+    <string name="sampleDate">2021-11-05</string>
+    <string name="title">Buy Grocery</string>
 </resources>
