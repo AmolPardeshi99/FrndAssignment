@@ -4,8 +4,6 @@ import dev.amol.frndassignment.model.remote.requestdata.AddTaskReqData
 import dev.amol.frndassignment.model.remote.requestdata.DeleteTaskReq
 import dev.amol.frndassignment.model.remote.requestdata.GetTaskReqData
 import dev.amol.frndassignment.model.remote.responsedata.ResponseData
-import dev.amol.frndassignment.model.remote.responsedata.Task
-import dev.amol.frndassignment.model.remote.responsedata.TaskDetail
 import retrofit2.http.*
 
 interface APIService {

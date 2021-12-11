@@ -19,8 +19,12 @@ class TaskRepository @Inject constructor(val apiService: APIService ,val taskDAO
 
     fun fetchDataFromAPI(){
         CoroutineScope(IO).launch {
+
+
             val taskList:List<Task> = apiService.getAllTask(GetTaskReqData(USER_ID)).tasks
             val taskModelList= ArrayList<TaskModel>()
+
+
             taskList.forEach{
                 taskModelList.add(TaskModel(it.taskId,
                     it.taskDetail.title,it.taskDetail.desc,it.taskDetail.date))
