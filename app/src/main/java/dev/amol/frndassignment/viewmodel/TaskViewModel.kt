@@ -11,25 +11,25 @@ import javax.inject.Inject
 @HiltViewModel
 class TaskViewModel @Inject constructor(val taskRepo: TaskRepository) : ViewModel() {
 
-
+    // getting data from room db
     fun getDataFromRoomDB(): LiveData<List<TaskModel>> {
         return taskRepo.getDataFromRoom()
     }
 
+    // fetching current data from api server
     fun fetchDataFromAPI() {
         taskRepo.fetchDataFromAPI()
     }
 
+    // adding new data to api server
     fun addDataToAPI(taskReqData: AddTaskReqData) {
         taskRepo.addDataToAPI(taskReqData)
     }
 
+    // delete current data from api server
     fun deleteFromAPI(task_id: Int) {
         taskRepo.deleteDataFromAPI(task_id)
     }
 
-    fun deleteFromRoomDB(taskModel: TaskModel) {
-        taskRepo.deleteTaskFromRoom(taskModel)
-    }
 
 }

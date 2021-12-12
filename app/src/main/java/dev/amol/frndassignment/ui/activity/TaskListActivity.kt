@@ -27,11 +27,12 @@ class TaskListActivity : AppCompatActivity(), OnTaskClickListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_task_list)
-
+        // function calls for setting recyclerview and getting task list from room database
         loadData()
         setRecycler()
     }
 
+    // making api call at once in onCreate and fetching data from room db as livedata
     private fun loadData() {
         CoroutineScope(Main).launch {
             taskViewModel.fetchDataFromAPI()
@@ -43,7 +44,7 @@ class TaskListActivity : AppCompatActivity(), OnTaskClickListener {
         })
     }
 
-
+    // setting adapter and layout manager to recyclerview
     private fun setRecycler() {
         taskAdapter = TaskAdapter(this, taskList)
         taskRecyclerView.apply {
@@ -52,6 +53,7 @@ class TaskListActivity : AppCompatActivity(), OnTaskClickListener {
         }
     }
 
+    // clickListener method for delete button on each task
     override fun onTaskClickListener(taskModel: TaskModel) {
         taskViewModel.deleteFromAPI(taskModel.task_id)
     }

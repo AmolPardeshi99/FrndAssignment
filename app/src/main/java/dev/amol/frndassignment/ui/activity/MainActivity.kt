@@ -16,6 +16,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    // initializing variables
     val taskViewModel: TaskViewModel by viewModels()
     private var currDate = ""
     private var title = ""
@@ -25,21 +26,24 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
+        // on selecting date store date in variable
         calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
             currDate = "$dayOfMonth/${month + 1}/$year"
         }
 
+        // on click of add task button add task to room and api server
         btnAddTask.setOnClickListener {
             onAddBtnClicked()
         }
 
+        // on click of show task button open new activity for showing task list
         btnShowTaskList.setOnClickListener {
             startActivity(Intent(this, TaskListActivity::class.java))
         }
 
     }
 
+    // function for getting values from edittext validation
     private fun onAddBtnClicked() {
         title = etTitle.text.toString()
         decs = etDesc.text.toString()
@@ -58,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         etDesc.setText("")
     }
 
-
+    // saving new task to api server
     fun saveDataToAPI() {
         val task = Task(currDate, decs, title)
         taskViewModel.addDataToAPI(AddTaskReqData(task = task, userId = USER_ID))

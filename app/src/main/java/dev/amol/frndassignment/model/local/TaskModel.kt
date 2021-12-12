@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
+
+// entity class fro taskList table
 @Entity(tableName = "taskList")
 data class TaskModel(
     @PrimaryKey

@@ -19,12 +19,11 @@ class TaskRepository @Inject constructor(val apiService: APIService, val taskDAO
 
     fun fetchDataFromAPI() {
         CoroutineScope(IO).launch {
-
-
+            // making api call storing response in task list
             val taskList: List<Task> = apiService.getAllTask(GetTaskReqData(USER_ID)).tasks
             val taskModelList = ArrayList<TaskModel>()
 
-
+            // adding data from taskList to taskModel class for storing in room db
             taskList.forEach {
                 taskModelList.add(
                     TaskModel(
@@ -33,11 +32,13 @@ class TaskRepository @Inject constructor(val apiService: APIService, val taskDAO
                     )
                 )
             }
+            // before adding data to room db first clearing old data from room db
             taskDAO.deleteALlTask()
             taskDAO.addTaskList(taskModelList)
         }
     }
 
+    // adding new data to api server
     fun addDataToAPI(addTaskReqData: AddTaskReqData) {
         CoroutineScope(IO).launch {
             apiService.storeCalendarTask(addTaskReqData)
@@ -45,6 +46,7 @@ class TaskRepository @Inject constructor(val apiService: APIService, val taskDAO
         }
     }
 
+    // deleting data from api server
     fun deleteDataFromAPI(task_id: Int) {
         CoroutineScope(IO).launch {
             apiService.deleteTask(DeleteTaskReq(taskId = task_id, userId = USER_ID))
@@ -58,7 +60,4 @@ class TaskRepository @Inject constructor(val apiService: APIService, val taskDAO
     }
 
 
-    fun deleteTaskFromRoom(taskModel: TaskModel) {
-        taskDAO.deleteTask(taskModel)
-    }
 }

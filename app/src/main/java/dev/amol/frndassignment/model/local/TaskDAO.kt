@@ -6,15 +6,15 @@ import androidx.room.*
 @Dao
 interface TaskDAO {
 
-    // insert data
+    // insert data to room db
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addTaskList(taskList: List<TaskModel>)
 
-    // delete data
+    // delete data from room
     @Delete
     fun deleteTask(taskModel: TaskModel)
 
-    // fetch all data
+    // fetch all data from taskList table
     @Query("select * from taskList order by date")
     fun getALlTaskList(): LiveData<List<TaskModel>>
 
